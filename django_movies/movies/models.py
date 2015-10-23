@@ -3,18 +3,17 @@ from django.db import models
 # Create your models here.
 
 
-class Person(models.Model):
-    name = models.CharField(max_length=30)
-
-
-class Rating(models.Model):
+class IdInfo(models.Model):
+    user_id = models.IntegerField()
+    item_id = models.IntegerField()
     rating = models.IntegerField()
-    owner = models.ForeignKey(Person)
+
+
+class Genre(models.Model):
+    genre = models.CharField(max_length=15, blank=True)
 
 
 class Movie(models.Model):
-    movie_id = models.in
-    title = models.CharField(max_length=100)
-    rating = models.ManyToManyField(Rating)
-
-movie_id, "movie_title", "release_date"
+    movie_id = models.IntegerField()
+    title = models.CharField(max_length=100, blank=True)
+    release_date = models.DateField()

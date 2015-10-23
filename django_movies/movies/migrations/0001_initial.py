@@ -11,30 +11,28 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Genre',
+            fields=[
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('genre', models.CharField(max_length=15, blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='IdInfo',
+            fields=[
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('user_id', models.IntegerField()),
+                ('item_id', models.IntegerField()),
+                ('rating', models.IntegerField()),
+            ],
+        ),
+        migrations.CreateModel(
             name='Movie',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
-                ('title', models.CharField(max_length=100)),
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
+                ('movie_id', models.IntegerField()),
+                ('title', models.CharField(max_length=100, blank=True)),
+                ('release_date', models.DateField()),
             ],
-        ),
-        migrations.CreateModel(
-            name='Person',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
-                ('name', models.CharField(max_length=30)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Rating',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
-                ('rating', models.IntegerField()),
-                ('owner', models.ForeignKey(to='movies.Person')),
-            ],
-        ),
-        migrations.AddField(
-            model_name='movie',
-            name='rating',
-            field=models.ManyToManyField(to='movies.Rating'),
         ),
     ]
