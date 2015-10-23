@@ -3,17 +3,28 @@ from django.db import models
 # Create your models here.
 
 
+class Movie(models.Model):
+    title = models.CharField(max_length=100, blank=True)
+    release_date = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+class UserInfo(models.Model):
+    age = models.IntegerField()
+    gender = models.CharField(max_length=1)
+    occupation = models.CharField(max_length=25)
+    zip = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.zip
+
+
 class IdInfo(models.Model):
-    user_id = models.IntegerField()
-    item_id = models.IntegerField()
+    user_id = models.ForeignKey(UserInfo)
+    movie_id = models.ForeignKey(Movie)
     rating = models.IntegerField()
 
-
-class Genre(models.Model):
-    genre = models.CharField(max_length=15, blank=True)
-
-
-class Movie(models.Model):
-    movie_id = models.IntegerField()
-    title = models.CharField(max_length=100, blank=True)
-    release_date = models.DateField()
+    def __str__(self):
+        return str(self.rating)
