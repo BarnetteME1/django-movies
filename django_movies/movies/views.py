@@ -21,17 +21,18 @@ def test_function(request):
     pass
 
 
-def movie_detail_view(request, movie_id, user_id):
+def movie_detail_view(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
-    ratings = Rater.objects.get(id=user_id)
-    context = {"movie_object": movie, 'rating': ratings}
+    context = {"movie_object": movie}
     # average_rating = Rater.objects.annotate(average_rating=Avg('rating')).values('movie_id', 'average_rating')
     return render_to_response(template_name='movie_detail.html', context=context)
 
 
 class MovieList(ListView):
     model = Movie
+    template_name = 'movie_list.html'
 
 
 class MovieDetail(DetailView):
     model = Movie
+    template_name = 'movie_detail.html'
