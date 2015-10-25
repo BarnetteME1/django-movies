@@ -11,38 +11,30 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='IdInfo',
-            fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
-                ('rating', models.IntegerField()),
-            ],
-        ),
-        migrations.CreateModel(
             name='Movie',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
-                ('title', models.CharField(max_length=100, blank=True)),
-                ('release_date', models.CharField(max_length=50, blank=True)),
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('title', models.CharField(blank=True, max_length=100)),
+                ('release_date', models.CharField(blank=True, max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='UserInfo',
+            name='Rater',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
                 ('age', models.IntegerField()),
                 ('gender', models.CharField(max_length=1)),
                 ('occupation', models.CharField(max_length=25)),
                 ('zip', models.CharField(max_length=10)),
             ],
         ),
-        migrations.AddField(
-            model_name='idinfo',
-            name='movie_id',
-            field=models.ForeignKey(to='movies.Movie'),
-        ),
-        migrations.AddField(
-            model_name='idinfo',
-            name='user_id',
-            field=models.ForeignKey(to='movies.UserInfo'),
+        migrations.CreateModel(
+            name='Rating',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('rating', models.IntegerField()),
+                ('movie_id', models.ForeignKey(to='movies.Movie')),
+                ('user_id', models.ForeignKey(to='movies.Rater')),
+            ],
         ),
     ]
