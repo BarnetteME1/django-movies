@@ -24,7 +24,6 @@ def test_function(request):
 def movie_detail_view(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
     context = {"movie_object": movie}
-    # average_rating = Rater.objects.annotate(average_rating=Avg('rating')).values('movie_id', 'average_rating')
     return render_to_response(template_name='movie_detail.html', context=context)
 
 

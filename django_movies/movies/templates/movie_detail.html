@@ -10,7 +10,9 @@
                 </div>
                 <div class="panel-body">
                     <h3>{{ movie_object.release_date }}</h3>
-                    <h3>{{ movie_object.rating_set.all }}</h3>
+                    {% for person in movie_object.rating_set.all %}
+                        <h3>{{ person.rating }}</h3>
+                    {% endfor %}
                 </div>
             </div>
         </div>
