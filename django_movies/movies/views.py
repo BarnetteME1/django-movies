@@ -1,10 +1,9 @@
-from django.db.models import Avg
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 
 # Create your views here.
 from django.views.generic import ListView, DetailView
-from movies.models import Movie, Rating, Rater
+from movies.models import Movie, Rating, Rater, TopTwenty
 
 
 def index_view(request):
@@ -12,26 +11,25 @@ def index_view(request):
     return render_to_response(template_name='body.html', context=context)
 
 
-def movie_list_view(request):
-    movies = Movie.objects.all()
-    return render_to_response(template_name='movie_list.html', context={'movie_list': movies})
-
-
-def test_function(request):
-    pass
-
-
-def movie_detail_view(request, movie_id):
-    movie = Movie.objects.get(id=movie_id)
-    context = {"movie_object": movie}
-    return render_to_response(template_name='movie_detail.html', context=context)
-
-
 class MovieList(ListView):
     model = Movie
-    template_name = 'movie_list.html'
 
 
 class MovieDetail(DetailView):
     model = Movie
-    template_name = 'movie_detail.html'
+
+
+class RaterList(ListView):
+    model = Rater
+
+
+class RaterDetail(DetailView):
+    model = Rater
+
+
+class TopMoviesListView(ListView):
+    model = TopTwenty
+    template_name = 'movies/movie_list.html'
+
+    def get_queryset(self):
+        return TopTwenty.top_movies

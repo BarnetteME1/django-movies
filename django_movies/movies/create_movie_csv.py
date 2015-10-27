@@ -17,7 +17,7 @@ def movie_csv(apps, schema_edirot):
         Movie.objects.create(id=movie_id, title=movie_title, release_date=release_date)
 
 
-def user_csv(apps, schema_edirot):
+def user_csv(apps, schema_editor):
 
     user_info = pd.read_csv('~/iron_yard_hw/django-movies/django_movies/ml-100k/u.user', sep='|',
                             names=['user_id', 'age', 'gender', 'occupation', 'zip_code'])

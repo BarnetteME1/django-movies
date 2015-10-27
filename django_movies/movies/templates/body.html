@@ -7,8 +7,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class=""><a href="{% url 'movie_list' %}">movies <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="{% url 'rater_list' %}">users <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <div class="container">
 {% block content %}
+    <h1>Hello! Welcome to BIMDB</h1>
 {% endblock %}
 </div>
 </body>
