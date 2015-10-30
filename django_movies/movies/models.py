@@ -1,6 +1,4 @@
-from itertools import count
 from django.db import models
-from django.db.models import Avg
 
 
 # Create your models here.
@@ -8,26 +6,24 @@ from django.db.models import Avg
 
 class TopTwenty(models.Manager):
 
-    @property
     def top_movies(self):
-        return sorted(Movie.rating_set.all(), key=lambda x: x.average, reverse=True)[:20]
+        return sorted(Movie.objects.all(), key=lambda x: x.average, reverse=True)[:20]
 
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     release_date = models.CharField(max_length=50)
 
+    objects = TopTwenty()
+
     def __str__(self):
         return self.title
-
-    @property
-    def top_movies(self):
-        return sorted(self.all(), key=lambda x: x.movie, reverse=True)[:20]
 
     @property
     def average(self):
         rating = self.rating_set.all().values_list('rating', flat=True)
         return sum(rating)/rating.count()
+
 
 class Rater(models.Model):
     age = models.IntegerField()

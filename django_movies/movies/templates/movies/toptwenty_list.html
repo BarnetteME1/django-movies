@@ -1,0 +1,16 @@
+{% extends "body.html" %}
+
+{% block content %}
+<br/>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% for movie in top_20 %}
+                    <h3>{{ movie }}</h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "body.html" %}
+
+{% block content %}
+<br/>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">User ID: {{ rater.id }} | Gender: {{ rater.gender }} | Occupation: {{ rater.occupation }} |
+                        Age: {{ rater.age }} | Zip-code: {{ rater.zip }}</h1>
+                </div>
+                <div class="panel-body">
+                    {% for rating in object.rating_set.all %}
+                        <h3><a href="{% url 'movie_detail' rating.movie_id.id %}">{{ rating.movie_id }}: {{ rating.rating }}</a></h3>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -29,7 +29,10 @@ class RaterDetail(DetailView):
 
 class TopMoviesListView(ListView):
     model = TopTwenty
-    template_name = 'movies/movie_list.html'
 
     def get_queryset(self):
         return TopTwenty.top_movies
+
+def default_view(request):
+    final_list = Movie.objects.top_movies()
+    return render_to_response(template_name='movies/toptwenty_list.html', context={"top_20": final_list})
