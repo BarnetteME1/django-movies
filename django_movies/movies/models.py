@@ -6,6 +6,13 @@ from django.db import models
 
 class TopTwenty(models.Manager):
 
+    def higher_reviews(self):
+        movies = []
+        for movie in Movie.objects.all:
+            if movie.rating_set.count() > 20:
+                movies.append(movie)
+        return movies
+
     def top_movies(self):
         return sorted(Movie.objects.all(), key=lambda x: x.average, reverse=True)[:20]
 
